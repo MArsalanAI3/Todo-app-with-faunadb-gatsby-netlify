@@ -160,7 +160,7 @@ export default function Home() {
                     aria-label="delete"
                     onClick={() => handleDelete(curr.id)}
                   >
-                  <Avatar style={{ backgroundColor: "whiteSmoke" }}>
+                  <Avatar style={{ color:"white" , backgroundColor: "red[500]" }}>
                       <DeleteIcon />
                   </Avatar>
                   </IconButton>
