@@ -15,18 +15,24 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
-
-
+// import NavBar from './Navbar';
+import './style.css';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 // Importing of Icons
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd"
-import EventNoteIcon from '@material-ui/icons/EventNote';
-
+// import EventNoteIcon from '@material-ui/icons/EventNote';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
+
+
+
 
 
 
@@ -73,7 +79,7 @@ export default function Home() {
     // Prevent Form Refresh Onsubmit
     event.preventDefault()
     handleClick()
-    
+
     // Adding Task
     addTask({
       variables: {
@@ -81,8 +87,8 @@ export default function Home() {
       },
       refetchQueries: [{ query: GET_TODOS }],
     })
-  
-}
+
+  }
   const handleDelete = id => {
     removeTask({
       variables: { id: id },
@@ -98,15 +104,16 @@ export default function Home() {
     console.log(error)
   }
   return (
-    <Paper elevation={3} style= {{width: "500px", margin: " 70px auto" , minHeight: "200px"}}>
+    <Paper className="paper" elevation={3} style={{ width: "500px", margin: " 70px auto", minHeight: "200px" }}>
 
-      <h1 style={{textAlign: "center", fontStyle:"Roboto", padding: "15px 15px 0px 15px"}}> Todo Application </h1>
-      <form 
-      onSubmit={e => handleSubmitForm(e)}
-      style={{margin: "20px 10px"}}>
+
+      <h1 style={{ textAlign: "center", fontSize: 42, padding: "15px 15px 0px 15px" }}> Todo Application </h1>
+      <form
+        onSubmit={e => handleSubmitForm(e)}
+        style={{ margin: "20px 10px" }}>
 
         <TextField
-          style={{margin: "10px 0px"}}
+          style={{ margin: "10px 0px" }}
           id="standard-basic"
           label="Enter Todo Item"
           type="text"
@@ -118,7 +125,6 @@ export default function Home() {
 
         <Button
           variant="contained"
-          color="primary"
           fullWidth
           type="submit"
           startIcon={<PlaylistAddIcon />}
@@ -131,36 +137,35 @@ export default function Home() {
           Todo Item has been added successfully
         </Alert>
       </Snackbar>
-      <div>
-      <List>
-        {data?.items.map(curr => {
 
-          return (
-            
-            
-            <ListItem
-            key = {curr.id}
-            >
-              <ListItemAvatar>
-                    <Avatar>
-                      <EventNoteIcon />
-                    </Avatar>
-            </ListItemAvatar>
-              <ListItemText
-                primary={curr.item}
-              />
-              <ListItemSecondaryAction>
-                <IconButton
-                 edge="end"
-                 aria-label="delete" 
-                 onClick={() => handleDelete(curr.id)}
-                 >
-                  <DeleteIcon />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-          )
-        })}
+      <div>
+        <List>
+          {data?.items.map(curr => {
+
+            return (
+              <ListItem
+                key={curr.id}
+              >
+                <ListItemAvatar>
+                  <Avatar style={{ color: "white", backgroundColor: "green[500]" }}>
+                    <AssignmentIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary={curr.item}
+                />
+                <ListItemSecondaryAction>
+                  <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    onClick={() => handleDelete(curr.id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </ListItemSecondaryAction>
+              </ListItem>
+            )
+          })}
         </List>
       </div>
     </Paper>
