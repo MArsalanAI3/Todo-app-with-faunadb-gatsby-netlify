@@ -15,6 +15,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import CircularProgress from '@material-ui/core/CircularProgress';
 // import NavBar from './Navbar';
 import './style.css';
 import AppBar from '@material-ui/core/AppBar';
@@ -97,7 +98,9 @@ export default function Home() {
   }
 
   if (loading) {
-    return <h1>Loading...</h1>
+    return (
+    <CircularProgress className="loader" variant="static"  />
+    )
   }
 
   if (error) {
@@ -160,9 +163,9 @@ export default function Home() {
                     aria-label="delete"
                     onClick={() => handleDelete(curr.id)}
                   >
-                  <Avatar style={{ color:"white" , backgroundColor: "red[500]" }}>
+                    <Avatar style={{ color: "white", backgroundColor: "red[500]" }}>
                       <DeleteIcon />
-                  </Avatar>
+                    </Avatar>
                   </IconButton>
                 </ListItemSecondaryAction>
               </ListItem>
